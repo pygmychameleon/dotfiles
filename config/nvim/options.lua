@@ -24,6 +24,7 @@ opt.smartindent = true
 -- ===== Fold =====
 opt.foldopen:remove("block")
 
+opt.clipboard="unnamedplus"
 -- ===== Misc =====
 opt.updatetime = 250
 opt.timeoutlen = 400
