@@ -22,6 +22,7 @@ set -Ux PNPM_HOME /Users/shashaminchokjaroenwathanakul/Library/pnpm
 abbr gs "git status"
 abbr gp "git push"
 abbr gc "git commit"
+abbr gcm "git commit -m"
 abbr gaa "git add ."
 abbr ga "git add"
 abbr gpl "git pull"
