@@ -10,6 +10,7 @@ ln -sfn $HOME/dotfiles/config/aerospace $HOME/.config/aerospace
 ln -sfn $HOME/dotfiles/config/sketchybar $HOME/.config/sketchybar
 ln -sfn $HOME/dotfiles/config/fish $HOME/.config/fish
 ln -sfn $HOME/dotfiles/config/nvim $HOME/.config/nvim
+ln -sfn $HOME/dotfiles/config/tmux $HOME/.config/tmux
 
 mkdir -p "$HOME/Library/Application Support/Code/User"
 mkdir -p "$HOME/Library/Application Support/Cursor/User"
