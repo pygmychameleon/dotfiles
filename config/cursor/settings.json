@@ -8,10 +8,18 @@
     "workbench.action.toggleSidebarVisibility",
     // Let cmd+P open Quick Open from inside the terminal
     "workbench.action.quickOpen",
-    // Let cmd+i open the chat panel from the terminal
+    // Let cmd+i toggle the chat/composer panel from the terminal,
+    // and cmd+shift+i open a fresh new chat thread.
+    // runCommands is needed so the chained "toggle + focus" binding bubbles
+    // out of the shell instead of being swallowed.
+    "runCommands",
+    "workbench.action.toggleAuxiliaryBar",
+    "workbench.action.focusAuxiliaryBar",
     "aichat.newchataction",
-    // Let cmd+` toggle the terminal from inside the terminal
+    // Let ctrl+` toggle the terminal from inside the terminal
     "workbench.action.terminal.toggleTerminal",
+    // Let cmd+w kill the focused terminal split
+    "workbench.action.terminal.kill",
     // Directional pane navigation must work from inside the terminal
     "workbench.action.navigateLeft",
     "workbench.action.navigateRight",
@@ -63,6 +71,7 @@
   "vim.easymotion": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": false,
+  "vim.foldfix": true,
   // "vim.hlsearch": true,
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "rgba(250, 240, 170, 0.2)",

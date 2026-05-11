@@ -46,20 +46,24 @@
     "key": "alt+shift+.",
     "command": "workbench.action.moveEditorRightInGroup"
   },
+    // Left: navigateLeft is context-aware — from the auxiliary bar it lands
+    // in the editor, from a middle editor group it moves one group left.
+    // Unconditional so it also fires when the chat input has editorTextFocus.
     {
       "key": "cmd+ctrl+h",
       "command": "workbench.action.navigateLeft"
     },
-    // Right: from the editor, jump into the Cursor chat/composer panel.
-    // Falls through to navigateRight from other contexts.
+    // Right: from the editor jump into the Cursor chat in the auxiliary bar
+    // when it's visible; otherwise navigate one group right.
     {
       "key": "cmd+ctrl+l",
-      "command": "composer.focusComposer",
-      "when": "editorFocus"
+      "command": "workbench.action.focusAuxiliaryBar",
+      "when": "editorFocus && auxiliaryBarVisible"
     },
     {
       "key": "cmd+ctrl+l",
-      "command": "workbench.action.navigateRight"
+      "command": "workbench.action.navigateRight",
+      "when": "!auxiliaryBarFocus && !(editorFocus && auxiliaryBarVisible)"
     },
     {
       "key": "cmd+ctrl+k",
@@ -75,18 +79,55 @@
       "key": "cmd+ctrl+j",
       "command": "workbench.action.navigateDown"
     },
-    // Toggle the integrated terminal from anywhere.
-    // Requires disabling macOS's "Move focus to next window" shortcut
-    // (System Settings → Keyboard → Keyboard Shortcuts → Keyboard).
+    // Toggle the integrated terminal from anywhere. toggleTerminal is smart:
+    // hidden → show+focus an existing terminal (no new one is created);
+    // visible+focused → hide; visible+unfocused → focus.
+    // Overrides Cursor's default ctrl+` (which spawns a fresh terminal).
     {
-      "key": "cmd+`",
+      "key": "ctrl+`",
       "command": "workbench.action.terminal.toggleTerminal"
     },
-    // Make cmd+i open Cursor chat even when the terminal is focused
-    // (the terminal swallows the keystroke by default; commandsToSkipShell
-    // in settings.json lets it bubble up to the workbench).
+    {
+      "key": "ctrl+`",
+      "command": "-workbench.action.terminal.new"
+    },
+    // Close the active terminal split (cmd+w mirrors macOS "close" semantics
+    // but only fires when the terminal is focused, so editor cmd+w still works).
+    {
+      "key": "cmd+w",
+      "command": "workbench.action.terminal.kill",
+      "when": "terminalFocus"
+    },
+    // Toggle the Cursor chat/Composer panel from the terminal.
+    // The terminal swallows these keystrokes by default; commandsToSkipShell
+    // in settings.json lets them bubble up to the workbench.
+    //
+    // cmd+i:
+    //   - If the auxiliary bar (chat pane) is already visible, close it.
+    //   - If it's hidden, open it AND focus the chat input so you can type
+    //     immediately. We chain toggle + focus via runCommands; focusing the
+    //     aux bar activates its current view, which puts the cursor in the
+    //     chat input.
+    // cmd+shift+i: always start a brand-new chat (aichat.newchataction both
+    //   opens the panel and focuses the input).
     {
       "key": "cmd+i",
+      "command": "workbench.action.toggleAuxiliaryBar",
+      "when": "terminalFocus && auxiliaryBarVisible"
+    },
+    {
+      "key": "cmd+i",
+      "command": "runCommands",
+      "args": {
+        "commands": [
+          "workbench.action.toggleAuxiliaryBar",
+          "workbench.action.focusAuxiliaryBar"
+        ]
+      },
+      "when": "terminalFocus && !auxiliaryBarVisible"
+    },
+    {
+      "key": "cmd+shift+i",
       "command": "aichat.newchataction",
       "when": "terminalFocus"
     },
