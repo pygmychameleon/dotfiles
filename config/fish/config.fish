@@ -31,3 +31,8 @@ abbr cds "claude --dangerously-skip-permissions"
 
 abbr v nvim
 abbr vim nvim
+
+abbr ta "tmux attach"
+abbr tl "tmux ls"
+abbr tks "tmux kill-session -t"
+abbr tkns "tmux kill-server"
