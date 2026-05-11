@@ -15,8 +15,8 @@ after-startup-command = [
 
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = false
-enable-normalization-opposite-orientation-for-nested-containers = false
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
@@ -80,7 +80,7 @@ V = ['1', '2']
 inner.horizontal = 8
 inner.vertical = 0
 # TODO: remove "secondary" hardcode and maybe use dimensions
-outer.top = [{ monitor."^built-in retina display$" = 8}, { monitor."DELL.*"= 36 }, { monitor.".*"= 36 } , 8]
+outer.top = [{ monitor."^built-in retina display$" = 8}, { monitor."DELL.*"= 36 }, { monitor.".*"= 36 } , 36]
 outer.left = 0
 outer.bottom = 0
 outer.right = 0
