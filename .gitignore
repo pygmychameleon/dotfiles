@@ -1,3 +1,4 @@
-config/zsh/.zsh_sessions/*
-config/zsh/.zsh_history/*
-config/zsh/.zcompcache/*
+**/.zsh_history
+**/.zcompdump*
+**/.zsh_sessions/
+**/.zcompcache/

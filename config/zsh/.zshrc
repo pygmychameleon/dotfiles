@@ -14,7 +14,18 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+
+t() {
+    local name="${1:-$(basename "$PWD" | tr ':.' '__')}"
+    tmux new -A -s "$name"
+}
+alias ta='tmux attach'
+alias tl='tmux ls'
+alias tks='tmux kill-session -t'
+alias tkns='tmux kill-server'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
