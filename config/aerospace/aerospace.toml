@@ -11,6 +11,7 @@ after-startup-command = [
     # JankyBorders has a built-in detection of already running process,
     # so it won't be run twice on AeroSpace restart
     'exec-and-forget $(brew --prefix)/bin/sketchybar',
+    'exec-and-forget $(brew --prefix)/bin/borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
 ]
 
 
@@ -57,8 +58,8 @@ exec-on-workspace-change = [
 1 = ['1', '2']
 2 = ['1', '2']
 3 = ['1', '2']
-4 = ['1', '2']
-5 = ['1', '2']
+4 = ['2', '1']
+5 = ['2', '1']
 C = ['1', '2']
 M = ['2', '1']
 N = ['2', '1']
@@ -138,6 +139,7 @@ alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-backtick = 'workspace 0'
+alt-0 = 'workspace 0'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
@@ -167,6 +169,9 @@ alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-cmd-1 = 'move-workspace-to-monitor 1'
 alt-cmd-2 = 'move-workspace-to-monitor 2'
+
+# Clear all on-screen notifications by relaunching Notification Center.
+ctrl-cmd-n = 'exec-and-forget killall NotificationCenter'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
